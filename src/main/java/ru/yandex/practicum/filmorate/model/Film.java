@@ -9,7 +9,6 @@ import java.time.LocalDate;
 public class Film {
     Long id;
 
-    @NotNull(message = "Не передано название")
     @NotBlank(message = "Название не должно быть пустым")
     String name;
 

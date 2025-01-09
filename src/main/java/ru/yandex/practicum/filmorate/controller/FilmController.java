@@ -28,14 +28,6 @@ public class FilmController {
     public Film create(@RequestBody @Valid Film film) {
         log.info("Добавляется фильм {}", film);
 
-        String filmName = film.getName();
-
-        if (filmName == null || filmName.isBlank()) {
-            log.error("Название фильма пустое");
-
-            throw new ValidationException("Название фильма не может быть пустым");
-        }
-
         if (film.getDescription().length() > 200) {
             log.error("Описание фильма слишком длинное");
 
@@ -74,7 +66,7 @@ public class FilmController {
         if (films.containsKey(newFilm.getId())) {
             Film oldFilm = films.get(newFilm.getId());
 
-            if (newFilm.getName() != null) {
+            if (!newFilm.getName().equals(oldFilm.getName())) {
                 oldFilm.setName(newFilm.getName());
             }
             if (newFilm.getDescription() != null) {
