@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
