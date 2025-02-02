@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode(of = {"login"})
@@ -26,4 +27,6 @@ public class User {
     @PastOrPresent(message = "Дата рождения не может быть в будущем")
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "UTC")
     LocalDate birthday;
+
+    Set<Long> friends;
 }

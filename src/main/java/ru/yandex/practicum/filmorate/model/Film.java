@@ -1,9 +1,11 @@
 package ru.yandex.practicum.filmorate.model;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Data
 public class Film {
@@ -18,4 +20,6 @@ public class Film {
     LocalDate releaseDate;
 
     Long duration;
+
+    Set<Long> likes;
 }
