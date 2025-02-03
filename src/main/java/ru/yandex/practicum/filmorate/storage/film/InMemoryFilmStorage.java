@@ -16,7 +16,7 @@ import java.util.*;
 public class InMemoryFilmStorage implements FilmStorage {
 
     private final Map<Long, Film> films = new HashMap<>();
-    private final Map<Long, Set<User>> likes = new HashMap<>();
+    private final Map<Long, Set<Long>> likes = new HashMap<>();
 
     @Override
     public Film findById(Long fId) {
@@ -109,15 +109,15 @@ public class InMemoryFilmStorage implements FilmStorage {
     }
 
     @Override
-    public void addLike(Film film, User user) {
-        Set<User> fLikes = likes.get(film.getId());
-        fLikes.add(user);
+    public void addLike(Film film, Long userId) {
+        Set<Long> fLikes = likes.get(film.getId());
+        fLikes.add(userId);
     }
 
     @Override
-    public void removeLike(Film film, User user) {
-        Set<User> fLikes = likes.get(film.getId());
-        fLikes.remove(user);
+    public void removeLike(Film film, Long userId) {
+        Set<Long> fLikes = likes.get(film.getId());
+        fLikes.remove(userId);
     }
 
     private long getNextId() {

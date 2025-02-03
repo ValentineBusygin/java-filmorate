@@ -41,7 +41,7 @@ public class FilmService {
         User user = Optional.ofNullable(uStorage.findById(userId))
                 .orElseThrow(() -> new NotFoundException(String.format(ExceptionMessages.USER_NOT_FOUND, userId)));
 
-        fStorage.addLike(film, user);
+        fStorage.addLike(film, userId);
     }
 
     public void removeLike(Long filmId, Long userId) {
@@ -50,6 +50,6 @@ public class FilmService {
         User user = Optional.ofNullable(uStorage.findById(userId))
                 .orElseThrow(() -> new NotFoundException(String.format(ExceptionMessages.USER_NOT_FOUND, userId)));
 
-        fStorage.removeLike(film, user);
+        fStorage.removeLike(film, userId);
     }
 }

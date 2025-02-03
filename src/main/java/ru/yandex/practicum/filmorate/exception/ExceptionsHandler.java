@@ -35,6 +35,6 @@ public class ExceptionsHandler {
     @ExceptionHandler
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleException(final Exception e) {
-        return new ErrorResponse("Что-то пошло совсем не так");
+        return new ErrorResponse("Что-то пошло совсем не так: " + e.getMessage());
     }
 }
