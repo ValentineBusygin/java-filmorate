@@ -31,7 +31,7 @@ public class InMemoryFriendshipStorage implements FriendshipStorage {
                 friendships.add(new Friendship(userId, friendId, true));
             } else {
                 friendships.add(new Friendship(userId, friendId, false));
-            };
+            }
         }
     }
 
