@@ -28,7 +28,7 @@ public class FilmTests {
                 .releaseDate(LocalDate.of(2000, 1, 1))
                 .duration(90)
                 .mpa(new MpaRating(1L, "name"))
-                .genres(List.of(new Genre(1L,"name")))
+                .genres(List.of(new Genre(1L, "name")))
                 .build();
         Set<ConstraintViolation<Film>> violations = validator.validate(film);
         Assertions.assertEquals(1, violations.size(), "Не пройдена валидация на пустое название");
@@ -41,7 +41,7 @@ public class FilmTests {
                 .releaseDate(LocalDate.of(2000, 1, 1))
                 .duration(90)
                 .mpa(new MpaRating(1L, "name"))
-                .genres(List.of(new Genre(1L,"name")))
+                .genres(List.of(new Genre(1L, "name")))
                 .build();
         Set<ConstraintViolation<Film>> violations = validator.validate(film);
         Assertions.assertEquals(1, violations.size(), "Не пройдена валидация на пустое или null название");
@@ -55,7 +55,7 @@ public class FilmTests {
                 .releaseDate(LocalDate.of(2000, 1, 1))
                 .duration(90)
                 .mpa(new MpaRating(1L, "name"))
-                .genres(List.of(new Genre(1L,"name")))
+                .genres(List.of(new Genre(1L, "name")))
                 .build();
         Set<ConstraintViolation<Film>> violations = validator.validate(film);
         Assertions.assertEquals(1, violations.size(), "Не пройдена валидация на слишком длинное описание");
@@ -69,7 +69,7 @@ public class FilmTests {
                 .releaseDate(LocalDate.of(2000, 1, 1))
                 .duration(-90)
                 .mpa(new MpaRating(1L, "name"))
-                .genres(List.of(new Genre(1L,"name")))
+                .genres(List.of(new Genre(1L, "name")))
                 .build();
         Set<ConstraintViolation<Film>> violations = validator.validate(film);
         Assertions.assertEquals(1, violations.size(), "Не пройдена валидация на отрицательную продолжительность");
@@ -83,7 +83,7 @@ public class FilmTests {
                 .releaseDate(LocalDate.of(2000, 1, 1))
                 .duration(90)
                 .mpa(new MpaRating(1L, "name"))
-                .genres(List.of(new Genre(1L,"name")))
+                .genres(List.of(new Genre(1L, "name")))
                 .build();
         Set<ConstraintViolation<Film>> violations = validator.validate(film);
         Assertions.assertEquals(0, violations.size(), "Не пройдена валидация на отрицательную продолжительность");

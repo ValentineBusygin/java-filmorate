@@ -1,6 +1,5 @@
 package ru.yandex.practicum.filmorate.controller.genre;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.yandex.practicum.filmorate.controller.GenreController;

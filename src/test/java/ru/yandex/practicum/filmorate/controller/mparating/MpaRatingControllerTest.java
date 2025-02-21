@@ -3,13 +3,11 @@ package ru.yandex.practicum.filmorate.controller.mparating;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.yandex.practicum.filmorate.controller.MpaRatingController;
-import ru.yandex.practicum.filmorate.exception.ExceptionMessages;
-import ru.yandex.practicum.filmorate.exception.NotFoundException;
 import ru.yandex.practicum.filmorate.model.MpaRating;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 abstract class MpaRatingControllerTest {
     @Autowired
