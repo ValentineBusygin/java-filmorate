@@ -26,43 +26,36 @@ public class UserController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     public Collection<User> findAll() {
         return uService.findAll();
     }
 
     @GetMapping("/{userId}")
-    @ResponseStatus(HttpStatus.OK)
     public User find(Long userId) {
         return uService.findById(userId);
     }
 
     @PutMapping
-    @ResponseStatus(HttpStatus.OK)
     public User update(@RequestBody @Valid User user) {
         return uService.update(user);
     }
 
     @GetMapping("/{userId}/friends")
-    @ResponseStatus(HttpStatus.OK)
     public List<User> getFriends(@PathVariable Long userId) {
         return uService.getFriends(userId);
     }
 
     @GetMapping("/{userId}/friends/common/{friendId}")
-    @ResponseStatus(HttpStatus.OK)
     public List<User> getCommonFriends(@PathVariable Long userId, @PathVariable Long friendId) {
         return uService.getCommonFriends(userId, friendId);
     }
 
     @PutMapping("/{userId}/friends/{friendId}")
-    @ResponseStatus(HttpStatus.OK)
-    public List<User> addFriend(@PathVariable Long userId, @PathVariable Long friendId) {
-        return uService.addFriend(userId, friendId);
+    public void addFriend(@PathVariable Long userId, @PathVariable Long friendId) {
+        uService.addFriend(userId, friendId);
     }
 
     @DeleteMapping("/{userId}/friends/{friendId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeFriend(@PathVariable Long userId, @PathVariable Long friendId) {
         uService.removeFriend(userId, friendId);
     }

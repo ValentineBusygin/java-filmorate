@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,7 +12,8 @@ import java.time.LocalDate;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(of = {"login"})
+@EqualsAndHashCode(of = {"login", "email"})
+@Builder
 public class User {
     Long id;
 
