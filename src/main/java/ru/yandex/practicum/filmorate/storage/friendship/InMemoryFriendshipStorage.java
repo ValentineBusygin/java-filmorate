@@ -16,13 +16,9 @@ public class InMemoryFriendshipStorage implements FriendshipStorage {
 
     @Override
     public void create(long userId, long friendId) {
-        Optional<Friendship> friendshipOp = friendships.stream()
-                .filter(fr -> fr.getUserId() == userId && fr.getFriendId() == friendId)
-                .findFirst();
+        Optional<Friendship> friendshipOp = findFriendship(userId, friendId);
 
-        Optional<Friendship> friendFriendshipOp = friendships.stream()
-                .filter(fr -> fr.getFriendId() == userId && fr.getUserId() == friendId)
-                .findFirst();
+        Optional<Friendship> friendFriendshipOp = findFriendship(friendId, userId);
 
         if (friendshipOp.isEmpty()) {
             friendFriendshipOp.ifPresent(fr -> fr.setFriendshipState(true));
@@ -37,15 +33,17 @@ public class InMemoryFriendshipStorage implements FriendshipStorage {
 
     @Override
     public void remove(long userId, long friendId) {
-        Optional<Friendship> friendshipOp = friendships.stream()
-                .filter(fr -> fr.getUserId() == userId && fr.getFriendId() == friendId)
-                .findFirst();
+        Optional<Friendship> friendshipOp = findFriendship(userId, friendId);
         friendshipOp.ifPresent(friendships::remove);
 
-        Optional<Friendship> friendFriendshipOp = friendships.stream()
-                .filter(fr -> fr.getFriendId() == userId && fr.getUserId() == friendId)
+        Optional<Friendship> friendFriendshipOp = findFriendship(friendId, userId);
+        friendFriendshipOp.ifPresent(fr -> fr.setFriendshipState(false));
+    }
+
+    private Optional<Friendship> findFriendship(long userId, long friendId) {
+        return friendships.stream()
+                .filter(fr -> fr.getUserId() == userId && fr.getFriendId() == friendId)
                 .findFirst();
-        friendshipOp.ifPresent(fr -> fr.setFriendshipState(false));
     }
 
     @Override

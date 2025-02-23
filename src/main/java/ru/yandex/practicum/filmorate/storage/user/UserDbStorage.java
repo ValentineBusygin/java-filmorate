@@ -14,7 +14,7 @@ import java.util.Optional;
 @Primary
 @RequiredArgsConstructor
 public class UserDbStorage implements UserStorage {
-    final UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public User create(User user) {

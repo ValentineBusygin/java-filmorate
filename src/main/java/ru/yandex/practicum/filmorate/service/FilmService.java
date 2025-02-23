@@ -77,16 +77,8 @@ public class FilmService {
     }
 
     public void addLike(Long filmId, Long userId) {
-        Film film = fStorage.findById(filmId)
-                .orElseThrow(() -> {
-                    log.error("Фильм с id {} не найден", filmId);
-                    return new NotFoundException(String.format(ExceptionMessages.FILM_NOT_FOUND, filmId));
-                });
-        User user = uStorage.findById(userId)
-                .orElseThrow(() -> {
-                    log.error("Пользователь с id {} не найден", userId);
-                    return new NotFoundException(String.format(ExceptionMessages.USER_NOT_FOUND, userId));
-                });
+        checkFilmForExists(filmId);
+        checkUserForExists(userId);
 
         fLikesStorage.create(userId, filmId);
 
@@ -94,20 +86,28 @@ public class FilmService {
     }
 
     public void removeLike(Long filmId, Long userId) {
-        Film film = fStorage.findById(filmId)
-                .orElseThrow(() -> {
-                    log.error("Фильм с id {} не найден", filmId);
-                    return new NotFoundException(String.format(ExceptionMessages.FILM_NOT_FOUND, filmId));
-                });
-        User user = uStorage.findById(userId)
-                .orElseThrow(() -> {
-                    log.error("Пользователь с id {} не найден", userId);
-                    return new NotFoundException(String.format(ExceptionMessages.USER_NOT_FOUND, userId));
-                });
+        checkFilmForExists(filmId);
+        checkUserForExists(userId);
 
         fLikesStorage.remove(filmId, userId);
 
         log.info("У фильма {} удален лайк пользователя {}", filmId, userId);
+    }
+
+    private void checkFilmForExists(Long filmId) {
+        fStorage.findById(filmId)
+                .orElseThrow(() -> {
+                    log.error("Фильм с id {} не найден", filmId);
+                    return new NotFoundException(String.format(ExceptionMessages.FILM_NOT_FOUND, filmId));
+                });
+    }
+
+    private void checkUserForExists(Long userId) {
+        uStorage.findById(userId)
+                .orElseThrow(() -> {
+                    log.error("Пользователь с id {} не найден", userId);
+                    return new NotFoundException(String.format(ExceptionMessages.USER_NOT_FOUND, userId));
+                });
     }
 
     private void validate(Film film) {

@@ -18,9 +18,9 @@ public class UserRepository extends BaseRepository<User> {
     private static final String UPDATE_QUERY = "update users set email = ?, login = ?, name = ?, birthday = ? where id = ?";
 
     private static final String FIND_FRIENDS_BY_ID_QUERY = "select * from users where id in (select friend_id from friendships where user_id = ?)";
-    private static final String FIND_COMMON_FRIENDS_QUERY = "select * from users " +
-            "where id in (select friend_id from friendships where user_id = ?)" +
-            "and id in (select friend_id from friendships where user_id = ?)";
+    private static final String FIND_COMMON_FRIENDS_QUERY = "select u.* from users u " +
+            "join friendships f1 on u.id = f1.friend_id and f1.user_id = ? " +
+            "join friendships f2 on u.id = f2.friend_id and f2.user_id = ?";
 
     public UserRepository(JdbcTemplate jdbc, RowMapper<User> mapper) {
         super(jdbc, mapper);
