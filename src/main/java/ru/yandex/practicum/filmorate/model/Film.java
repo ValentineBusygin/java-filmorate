@@ -1,14 +1,21 @@
 package ru.yandex.practicum.filmorate.model;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 @Data
+@Builder
+@EqualsAndHashCode(of = {"name", "releaseDate", "mpa", "genres"})
 public class Film {
+    public static final LocalDate CINEMA_BIRTH_DAY = LocalDate.of(1895, 12, 28);
+
     Long id;
 
     @NotBlank(message = "Название не должно быть пустым")
@@ -19,7 +26,10 @@ public class Film {
 
     LocalDate releaseDate;
 
-    Long duration;
+    @Positive(message = "Длительность фильма должна быть положительной")
+    int duration;
 
-    Set<Long> likes;
+    MpaRating mpa;
+
+    List<Genre> genres;
 }
